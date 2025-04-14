@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body style="margin-top: 20rem;">
+    <h3 id="nameuser" class="container mt-2 d-flex justify-content-center">
+      Hello
+    </h3>
+    <div class="container d-flex justify-content-center">
+      <button
+        class="btn btn-primary p-3 m-3"
+        value="blue"
+        onclick="bgcolors(this)"
+      >
+        Blue
+      </button>
+      <button
+        class="btn btn-danger p-3 m-3"
+        value="red"
+        onclick="bgcolors(this)"
+      >
+        Red
+      </button>
+      <button
+        class="btn btn-success p-3 m-3"
+        value="green"
+        onclick="bgcolors(this)"
+      >
+        Green
+      </button>
+    </div>
+    <center>
+      <button
+        class="btn btn-light px-5 py-2 m-3"
+        value="white"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+    </center>
+    <script>
+        var user="";
+
+      if (!getCookie("email")) {
+        window.location.assign("/js/additional_task/storage_task/login.html");
+      } else {
+        user = getCookie("email")
+        nameuser.innerHTML = "Hello " + user ;
+
+        let color = sessionStorage.getItem(user);
+        if (color == "blue") {
+          document.body.style.backgroundColor = "#9191f7";
+        } else if (color == "red") {
+          document.body.style.backgroundColor = "#f47f7f";
+        } else if (color == "green") {
+          document.body.style.backgroundColor = "#87bb87";
+        } else {
+          document.body.style.backgroundColor = "white";
+        }
+      }
+        function logout() {
+          setCookie('email', "", {
+            "max-age": -1,
+          });
+        window.location.reload();
+      }
+      function setCookie(name, value, attributes = {}) {
+        attributes = {
+          path: "/",
+          // add other defaults here if necessary
+          ...attributes,
+        };
+
+        if (attributes.expires instanceof Date) {
+          attributes.expires = attributes.expires.toUTCString();
+        }
+
+        let updatedCookie =
+          encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+        for (let attributeKey in attributes) {
+          updatedCookie += "; " + attributeKey;
+          let attributeValue = attributes[attributeKey];
+          if (attributeValue !== true) {
+            updatedCookie += "=" + attributeValue;
+          }
+        }
+
+        document.cookie = updatedCookie;
+      }
+      function getCookie(name) {
+        let matches = document.cookie.match(
+          new RegExp(
+            "(?:^|; )" +
+              name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+              "=([^;]*)"
+          )
+        );
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+      }
+      function bgcolors(color) {
+        if (color.value == "blue") {
+          document.body.style.backgroundColor = "#9191f7";
+        } else if (color.value == "red") {
+          document.body.style.backgroundColor = "#f47f7f";
+        } else if (color.value == "green") {
+          document.body.style.backgroundColor = "#87bb87";
+        } else {
+          document.body.style.backgroundColor = "white";
+        }
+        let user=getCookie('email');
+        let colors = sessionStorage.setItem(user, color.value);
+        console.log(colors);
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

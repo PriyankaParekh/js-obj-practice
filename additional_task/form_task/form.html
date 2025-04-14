@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Form Validation</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script src="validate.js"></script>
+
+  </head>
+  <body>
+    <div class="container">
+      <main>
+        <div class="py-5 text-center">
+          <h2>Form</h2>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <div class="w-75">
+            <form class="needs-validation" onsubmit="handleSubmit(event)">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label for="firstName" class="form-label" >First name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    placeholder=""
+                    value=""
+                    onchange="validateName(this)"
+                    required
+                  />
+                  <div class="text-danger" hidden>
+                    Valid first name is required.
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <label for="lastName" class="form-label">Last name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder=""
+                    value=""
+                    onchange="validateName(this)"
+                    required
+                  />
+                  <div class="text-danger" hidden>
+                    Valid last name is required.
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="username" class="form-label">Username</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text">@</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      placeholder="Username"
+                      onchange="validateUsername(this)"
+                      required
+                    />
+                    <div class="text-danger" hidden>
+                      Your username is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="email" class="form-label"
+                    >Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="you@example.com"
+                    onchange="validateEmail(this)"
+                    required
+                  />
+                  <div class="text-danger" hidden>
+                    Please enter a valid email address.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="password" class="form-label"
+                      >Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      onchange="validpass(this)"
+                      required
+                    />
+                    <div class="text-danger" hidden>
+                      Please enter a valid password.
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="cpassword" class="form-label"
+                      >Confirm password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="cpassword"
+                      onchange="validconfirmpass(this)"
+                      required
+                    />
+                    <div class="text-danger" hidden>
+                      Please enter a valid password.
+                    </div>
+                  </div>
+
+                <div class="col-12">
+                  <label for="address" class="form-label">Address</label>
+                    <textarea
+                      class="form-control"
+                      placeholder="Leave a comment here"
+                      id="address"
+                      style="height: 100px"
+                      onchange="validateAddress(this)"
+                      required
+                    ></textarea>
+                  <div class="text-danger" hidden>
+                    Please Enter Valid Address.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="age" class="form-label"
+                      >Age</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="age"
+                      onchange="validAge(this)"
+                      required
+                    />
+                    <div class="text-danger" hidden>
+                      Please enter a valid age.
+                    </div>
+                  </div>
+
+                <div class="col-md-6">
+                    <label for="age" class="form-label"
+                      >Gender</label><br>
+                      <input type="radio" id="Male" name="fav_language" value="Male" required>
+                      <label for="Male">Male</label>
+                      <input class="ms-4" type="radio" id="Female" name="fav_language" value="Female" required>
+                      <label for="Female">Female</label>
+                      <input class="ms-4" type="radio" id="Other" name="fav_language" value="Other" required>
+                      <label for="Other">Other</label>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="country" class="form-label">Job Title</label>
+                    <select class="form-select" id="country" required>
+                      <option>FrontEnd Developer</option>
+                      <option>BackEnd Developer</option>
+                      <option>FullStack Developer</option>
+                    </select>
+                    <div class="text-danger" hidden>
+                      Please select a valid country.
+                    </div>
+                  </div>
+                <div class="col-md-6">
+                  <label for="zip" class="form-label">Zip</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="zip"
+                    onchange="validZipCode(this)"
+                    required
+                  />
+                  <div class="text-danger" hidden>Please Enter Valid Zip Code.</div>
+                </div>
+
+              </div>
+
+              <hr class="my-4" />
+
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="save-info"
+                  required
+                />
+                <label class="form-check-label" for="save-info"
+                  >Accept terms and conditions</label
+                >
+              </div>
+              <hr class="my-4" />
+              <button class="w-100 btn btn-primary btn-lg" type="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
